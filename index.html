@@ -157,7 +157,7 @@
       function listEvents() {
         clearPre();
         gapi.client.calendar.events.list({
-          'calendarId': 'primary',
+          'calendarId': calendarsSelect.value,
           'timeMin': (new Date()).toISOString(),
           'showDeleted': false,
           'singleEvents': true,
@@ -170,7 +170,7 @@
       function listEventsReadable() {
         clearPre();
         gapi.client.calendar.events.list({
-          'calendarId': 'primary',
+          'calendarId': calendarsSelect.value,
           'timeMin': (new Date()).toISOString(),
           'showDeleted': false,
           'singleEvents': true,
