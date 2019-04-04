@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script
+  src="http://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script> <!-- jquery -->
+    <title>iSprint</title>
+    <link rel="stylesheet" href="elements/common.css"> <!-- css used for common elements (header etc.) -->
+    <link href="jsgantt-improved-master/docs/jsgantt.css" rel="stylesheet" type="text/css"/>
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+    </style>
+  </head>
+
+  <body>
+
+    <!-- Start of header -->
+
+    <div class="row logoDiv">
+      <img src="elements/logo_transparent.png" class="logo" alt="iSprint" width="200"height="60">
+    </div>
+
+    <nav id="menu">
+      <ul>
+        <li>
+          <a href="index.html">Home</a>
+        </li>
+        <li class="dropdown">
+          <a class="dropbtn" ref="sprint_gantt.html">Projects</a>
+          <div class="dropdown-content">
+            <a class="submenu" href="index.html">Overview</a>
+            <a class="submenu" href="#">Create Project</a>
+            <a class="submenu" href="#">Edit Project</a>
+          </div>
+        </li>
+        <li>
+          <a href="sprint_gantt.html">Sprints</a>
+        </li>
+
+        <li>
+          <a href="#">Members</a>
+        </li>
+      </ul>
+    </nav>
+    <!-- End of header -->
+
+
+    <div class='proj_title'> Project A</div>
+    <div style="position:relative" class="gantt" id="GanttChartDIV"></div>
+ 
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="jsgantt-improved-master/docs/jsgantt.js" type="text/javascript"></script>
+  <script>
+    // $(function(){
+    //   $('#header').load('header_component.html');
+    // });
+    
+    // When the user scrolls the page, execute myFunction 
+    window.onscroll = function() {myFunction()};
+
+    // Get the header
+    var header = document.getElementById("menu");
+
+    // Get the offset position of the navbar
+    var sticky = header.offsetTop;
+
+    // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+    function myFunction() {
+      if (window.pageYOffset > sticky) {
+        header.classList.add("sticky");
+      } else {
+        header.classList.remove("sticky");
+      }
+    }
+  </script>
+
+
+
+<script>
+
+var g = new JSGantt.GanttChart(document.getElementById('GanttChartDIV'), 'day');
+
+g.setOptions({
+  vCaptionType: 'Complete',  // Set to Show Caption : None,Caption,Resource,Duration,Complete,     
+  vQuarterColWidth: 36,
+  vDateTaskDisplayFormat: 'day dd month yyyy', // Shown in tool tip box
+  vDayMajorDateDisplayFormat: 'mon yyyy - Week ww',// Set format to dates in the "Major" header of the "Day" view
+  vWeekMinorDateDisplayFormat: 'dd mon', // Set format to display dates in the "Minor" header of the "Week" view
+  vLang: 'en',
+  vShowTaskInfoLink: 1, // Show link in tool tip (0/1)
+  vShowEndWeekDate: 0,  // Show/Hide the date for the last day of the week in header for daily
+  vAdditionalHeaders: { // Add data columns to your table
+      role: {
+        title: 'Role'
+      },
+      sector: {
+        title: 'Sector'
+      }
+    },
+  vUseFade: 0,
+  vUseSingleCell: 10000, // Set the threshold cell per table row (Helps performance for large data.
+  vFormatArr: ['Day', 'Week', 'Month', 'Quarter'], // Even with setUseSingleCell using Hour format on such a large chart can cause issues in some browsers,
+  
+});
+
+// Load from a Json url
+//JSGantt.parseJSON('./fixes/data.json', g);
+
+// Or Adding  Manually
+g.AddTaskItemObject({
+  pID: 1,
+  pName: "Sprint 5",
+  pStart: "2017-02-25",
+  pEnd: "2017-03-17",
+  pPlanStart: "2017-04-01",
+  pPlanEnd: "2017-04-15 12:00",
+  pClass: "ggroupblack",
+  pLink: "",
+  pMile: 0,
+  pRes: "Brian", // person assigned
+  pComp: 0,
+  pGroup: 1,
+  pParent: 0,
+  pOpen: 1,
+  pDepend: "",
+  pCaption: "",
+  pCost: 1000,
+  pNotes: "Role involved: Biz Analyst, Tech Lead, Web developer. Sprint 5 will focus on blah blah blah ",
+  role: "My Role",
+  sector: "Finance"
+});
+
+g.AddTaskItemObject({
+  pID: 10,
+  pName: "Sprint Task 1",
+  pStart: "2017-02-25",
+  pEnd: "2017-03-17",
+  pPlanStart: "2017-04-01",
+  pPlanEnd: "2017-04-15 12:00",
+  pClass: "ggroupblack",
+  pLink: "",
+  pMile: 0,
+  pRes: "Brian", // person assigned
+  pComp: 0,
+  pGroup: 1,
+  pParent: 1,
+  pOpen: 1,
+  pDepend: "",
+  pCaption: "",
+  pCost: 1000,
+  pNotes: "Role involved: Biz Analyst, Tech Lead, Web developer. Sprint task 1 will focus on blah blah blah ",
+  role: "My Role",
+  sector: "Finance"
+});
+
+g.AddTaskItemObject({
+  pID: 11,
+  pName: "Sprint Task 1a",
+  pStart: "2017-02-25",
+  pEnd: "2017-03-17",
+  pPlanStart: "2017-04-01",
+  pPlanEnd: "2017-04-15 12:00",
+  pClass: "ggroupblack",
+  pLink: "",
+  pMile: 0,
+  pRes: "Brian", // person assigned
+  pComp: 0,
+  pGroup: 1,
+  pParent: 10,
+  pOpen: 1,
+  pDepend: "",
+  pCaption: "",
+  pCost: 1000,
+  pNotes: "Role involved: Biz Analyst, Tech Lead, Web developer. Sprint task 1a will focus on blah blah blah ",
+  role: "My Role",
+  sector: "Finance"
+
+});
+
+g.AddTaskItemObject({
+  pID: 20,
+  pName: "Sprint Task 2",
+  pStart: "2017-02-25",
+  pEnd: "2017-03-17",
+  pPlanStart: "2017-04-01",
+  pPlanEnd: "2017-04-15 12:00",
+  pClass: "ggroupblack",
+  pLink: "",
+  pMile: 0,
+  pRes: "Brian", // person assigned
+  pComp: 0,
+  pGroup: 1,
+  pParent: 1,
+  pOpen: 1,
+  pDepend: "",
+  pCaption: "",
+  pCost: 1000,
+  pNotes: "Role involved: Biz Analyst, Tech Lead, Web developer. Sprint task 2 will focus on blah blah blah ",
+  role: "ops",
+  sector: "Finance"
+
+});
+
+g.AddTaskItemObject({
+  pID: 21,
+  pName: "Sprint Task 2a",
+  pStart: "2017-02-25",
+  pEnd: "2017-03-17",
+  pPlanStart: "2017-04-01",
+  pPlanEnd: "2017-04-15 12:00",
+  pClass: "ggroupblack",
+  pLink: "",
+  pMile: 0,
+  pRes: "Brian", // person assigned
+  pComp: 0,
+  pGroup: 1,
+  pParent: 20,
+  pOpen: 1,
+  pDepend: "",
+  pCaption: "",
+  pCost: 1000,
+  pNotes: "Role involved: Biz Analyst, Tech Lead, Web developer. Sprint task 2a will focus on blah blah blah ",
+  role: "Dev",
+  sector: "Finance"
+
+});
+
+g.AddTaskItemObject({
+  pID: 22,
+  pName: "Sprint Task 2b",
+  pStart: "2017-02-25",
+  pEnd: "2017-03-17",
+  pPlanStart: "2017-04-01",
+  pPlanEnd: "2017-04-15 12:00",
+  pClass: "ggroupblack",
+  pLink: "",
+  pMile: 0,
+  pRes: "Brian", // person assigned
+  pComp: 0,
+  pGroup: 1,
+  pParent: 20,
+  pOpen: 1,
+  pDepend: "",
+  pCaption: "",
+  pCost: 1000,
+  pNotes: "Role involved: Biz Analyst, Tech Lead, Web developer. Sprint task 2b will focus on blah blah blah ",
+  role: "Biz analyst",
+  sector: "Finance"
+
+});
+
+g.Draw();
+
+</script>
+</body>
+</html>
