@@ -71,8 +71,8 @@
 
     <div class="formStyle">
       <form action="" id="form">
-        <div>Project Name</div>
-        <input type="text" id="projectName" required />
+        <div>Sprint Task Name</div>
+        <input type="text" id="taskName" required />
         <div>Description</div>
         <input type="text" id="description" required />
         <div>Budget</div>
@@ -81,6 +81,13 @@
         <input type="date" id="startDate" required />
         <div>End Date</div>
         <input type="date" id="endDate" required />
+        <div>Job Roles</div>
+        <select id = "jobrole" multiple size="3">
+          <option value="dataAnalyst">Data Analyst</option>
+          <option value="projectManager">Project Manager</option>
+          <option value="softwareEngineer">Software Engineer</option>
+        </select>
+
         <br /><br />
         <div id="btns">
           <input type="button" value="Add" id="add" onClick="adding()" />
@@ -126,15 +133,16 @@
     </script>
 
     <script>
+      let projectName = document.getElementById('projectName').value;
+      let description = document.getElementById('description').value;
+      let budget = document.getElementById('budget').value;
+      let startDate = document.getElementById('startDate').value;
+      let endDate = document.getElementsByName('endDate').value;
+      let jobRoles = document.getElementById('jobrole');
+
       function adding() {
-        let projectName = document.getElementById('projectName');
-        let description = document.getElementById('description');
-        let budget = document.getElementById('budget');
-        let startDate = document.getElementById('startDate');
-        let endDate = document.getElementById('endDate');
-        let table = document.getElementById('table');
         console.log(projectName);
-        console.log(startDate);
+        
         //SUBMIT AJAX REQUEST
       }
     </script>
