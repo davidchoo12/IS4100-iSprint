@@ -82,7 +82,7 @@
         <div>End Date</div>
         <input type="date" id="endDate" required />
         <div>Job Roles</div>
-        <select id = "jobrole" multiple size="3">
+        <select id="jobrole" multiple size="3">
           <option value="dataAnalyst">Data Analyst</option>
           <option value="projectManager">Project Manager</option>
           <option value="softwareEngineer">Software Engineer</option>
@@ -133,16 +133,29 @@
     </script>
 
     <script>
-      let projectName = document.getElementById('projectName').value;
-      let description = document.getElementById('description').value;
-      let budget = document.getElementById('budget').value;
-      let startDate = document.getElementById('startDate').value;
-      let endDate = document.getElementsByName('endDate').value;
-      let jobRoles = document.getElementById('jobrole');
-
       function adding() {
-        console.log(projectName);
-        
+        let taskName = document.getElementById('taskName');
+        let description = document.getElementById('description');
+        let budget = document.getElementById('budget');
+        let startDate = document.getElementById('startDate');
+        let endDate = document.getElementById('endDate');
+        let jobRole = document.getElementById('jobrole');
+        console.log(startDate);
+        console.log(jobRole);
+        function getSelectValues(select) {
+          var result = [];
+          var options = select && select.options;
+          var opt;
+
+          for (var i = 0, iLen = options.length; i < iLen; i++) {
+            opt = options[i];
+
+            if (opt.selected) {
+              result.push(opt.value || opt.text);
+            }
+          }
+          return result;
+        }
         //SUBMIT AJAX REQUEST
       }
     </script>
