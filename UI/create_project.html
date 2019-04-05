@@ -71,48 +71,24 @@
 
     <div class="formStyle">
       <form action="" id="form">
-        <div>Name</div>
-        <input type="text" id="name" required />
-        <div>LastName</div>
-        <input type="text" id="lastName" required />
-        <div>Age</div>
-        <input type="number" id="age" required />
-        <div>Gender</div>
-        <br />
-        M<input type="radio" name="gender" value="M" id="male" required />
-        F<input
-          type="radio"
-          name="gender"
-          value="F"
-          id="female"
-          required
-        /><br /><br />
+        <div>Project Name</div>
+        <input type="text" id="projectName" required />
+        <div>Description</div>
+        <input type="text" id="description" required />
+        <div>Budget</div>
+        <input type="number" id="budget" required />
+        <div>Start Date</div>
+        <input type="date" id="startDate" required />
+        <div>End Date</div>
+        <input type="date" id="endDate" required />
+        <br /><br />
         <div id="btns">
           <input type="submit" value="Add" id="add" onClick="adding()" />
-          <input
-            type="button"
-            id="delete"
-            value="Delete"
-            onClick="deleteing()"
-          />
-          <input type="button" id="edit" value="edit" onClick="editing()" />
-          <input type="button" id="save" value="Save" onClick="saveing()" />
+          <input type="button" value="clear" id="clear" onClick="clear()" />
         </div>
       </form>
     </div>
     <br /><br />
-
-    <table id="table1" border="1">
-      <tr>
-        <th>Name</th>
-        <th>LastName</th>
-        <th>Age</th>
-        <th>Gender</th>
-        <th>Checking</th>
-      </tr>
-    </table>
-
-    <table id="table" border="1"></table>
 
     <script
       src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
