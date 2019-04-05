@@ -83,7 +83,7 @@
         <input type="date" id="endDate" required />
         <br /><br />
         <div id="btns">
-          <input type="submit" value="Add" id="add" onClick="adding()" />
+          <input type="button" value="Add" id="add" onClick="adding()" />
           <input type="button" value="clear" id="clear" onClick="clear()" />
         </div>
       </form>
@@ -126,7 +126,19 @@
     </script>
 
     <script>
-      console.log('test');
+      let projectName = document.getElementById('projectName').value;
+      let description = document.getElementById('description').value;
+      let budget = document.getElementById('budget').value;
+      let startDate = document.getElementById('startDate').value;
+      let endDate = document.getElementsByName('endDate').value;
+      let table = document.getElementById('table').value;
+      let changedUser = [];
+      let rowForEditing;
+      function adding(){
+          console.log(projectName);
+          console.log(startDate);
+          //SUBMIT AJAX REQUEST
+      }
     </script>
   </body>
 </html>
