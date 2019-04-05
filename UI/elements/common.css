@@ -65,6 +65,7 @@
         min-width: 160px;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
         z-index: 1;
+
       }
 
       /* Links inside the dropdown */
@@ -78,7 +79,7 @@
       .dropdown-content a:hover {background-color: #ddd;}
 
       /* Show the dropdown menu on hover */
-      .dropdown:hover .dropdown-content {display: block;}
+      .dropdown:hover .dropdown-content {display: block; margin-left:-20px;}
 
       /* Change the background color of the dropdown button when the dropdown content is shown */
       .dropdown:hover .dropbtn {background-color: #8495AF; color:white !important;}
@@ -88,7 +89,10 @@
 
 
 
-   
+      #menu{
+        background-color: white;
+        z-index: 10;
+      }
       .logo{
         display: block;
         margin-left: auto;
@@ -102,9 +106,23 @@
         top: 0;
         width: 100%
       }
-      .proj_title{
-        padding: 10px;
-        font-weight: bold;
+      .title_container{
+         display: flex; /* or inline-flex */
+         justify-content: space-between;
+         background-color: white;
+         padding: 10px;
+          font-weight: bold;
       }
 
+      .new_sprint{
+        padding: 5px 10px;
+        border-radius: 5px;
+        border:1px;
+        border-color: #B6D5E1;
+        border-style: solid;
+      }
+      .new_sprint .glyphicon-plus{
+        padding: 0px 5px;
+
+      }
     </style>
