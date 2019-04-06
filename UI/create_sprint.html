@@ -60,11 +60,11 @@
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
                 <div class="card-body">
-                    <h2 class="title">Let's get started on a new Project</h2>
+                    <h2 class="title">Create new Sprint for Project X</h2>
                     <form method="POST">
                         <div class="input-group">
-                            <label class="label">Project Name</label>
-                            <input class="input--style-4" type="text" name="project_name">
+                            <label class="label">Sprint Name</label>
+                            <input class="input--style-4" type="text" name="sprint_name">
                         </div>
                         <div class="row row-space">
                             <div class="col-2">
@@ -88,17 +88,30 @@
                         </div>
 
                         <div class="input-group">
-                            <label class="label">Project Description</label>
+                            <label class="label">Sprint Description</label>
                             <textarea style="width:100%; height: 100px; border:0px" class="input--style-4" type="text" rows = "5" name = "description"></textarea>
                         </div>
                         <div class="input-group">
-                            <label class="label">Project Budget</label>
-                            <input class="input--style-4" type="number" name="project_budget">
+                            <label class="label">Sprint Budget</label>
+                            <input class="input--style-4" type="number" name="sprint_budget">
                         </div>
+
+                        
+                        <div class="field_wrapper">
+                            <div class="new_task">
+                                <input type="text" name="field_name[]" value=""/>
+                                <a href="javascript:void(0);" class="add_task_button btn btn--radius-2 btn--green" title="Add field"><span class="glyphicon glyphicon-plus"></span>Add Sprint Task</div></a>
+                        </div>
+
                         <div class="p-t-15">
-                            <button style="width:100%" class="btn btn--radius-2 btn--blue" type="submit">Create new Project</button>
+                            <button style="width:100%" class="btn btn--radius-2 btn--blue" type="submit">Create new Sprint</button>
                         </div>
                     </form>
+
+
+
+
+
                 </div>
             </div>
         </div>
@@ -113,6 +126,50 @@
 
     <!-- Main JS-->
     <script src="colorlib-regform-4/js/global.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            var addButton = $('.add_task_button'); //Add button selector
+            var wrapper = $('.field_wrapper'); //Input field wrapper
+            var newTaskDiv = $('.new_task'); //Input field wrapper
+            var fieldHTML = '<div><input type="text" name="field_name[]" value=""/><a href="javascript:void(0);" class="remove_button"><img src="remove-icon.png"/></a></div>'; //New input field html 
+
+            var taskCounter = 1; //Initial field counter is 1
+            var src = "colorlib-regform-4/vendor/datepicker/daterangepicker.js";
+            
+            //Once add button is clicked
+            $(addButton).click(function(){
+
+                    var fieldHTML ='<br><br><hr><br><br><div class="input-group"> <label class="label task_title"><i>Sprint Task ' +taskCounter +'</i></label> <label class="label">Task Name</label> <input class="input--style-4" name="task_name[]"> </div> <div class="input-group"> <label class="label">Task Description</label> <textarea style="width:100%; height: 100px; border:0px" class="input--style-4" type="text" rows = "5" name = "task_1_description"></textarea> </div> <div class="row row-space"> <div class="col-2"> <div class="input-group"> <label class="label">Start Date</label> <div class="input-group-icon"> <input class="input--style-4 js-datepicker" type="text" name="task_start_date[]"> <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i> </div> </div> </div> <div class="col-2"> <div class="input-group"> <label class="label">End Date</label> <div class="input-group-icon"> <input class="input--style-4 js-datepicker" type="text" name="task_end_date[]"> <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i> </div> </div> </div> </div> <div class="input-group"> <label class="label">Suggested Role</label> <input class="input--style-4" name="task_role[]"> </div>';
+
+                    taskCounter++; //Increment field counter
+                    //$(".js-datepicker").datepicker();
+                    reload_datepicker(src)
+
+                    //$(wrapper).remove(newTaskDiv)
+                    //$(wrapper).append(fieldHTML); //Add field html
+                    //$(wrapper).append(newTaskDiv);
+                    $(fieldHTML).insertBefore(newTaskDiv)
+                
+            });
+            
+            //Once remove button is clicked
+            $(wrapper).on('click', '.remove_button', function(e){
+                e.preventDefault();
+                $(this).parent('div').remove(); //Remove field html
+                taskCounter--; //Decrement field counter
+            });
+        });
+        </script>
+       
+        <script>// reload datepicker js library for new tasks
+            function reload_datepicker(src) {
+                $('script[src="' + src + '"]').remove();
+                $('<script>').attr('src', src).appendTo('body');
+            }
+            //reload_js('source_file.js');
+        </script>
+
 
   <script>
     // $(function(){
