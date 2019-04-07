@@ -68,11 +68,7 @@
       </ul>
     </nav>
     <!-- End of header -->
-    
-    <div class="proj_title">Project A</div>
-    <div class="start_date">Start Date</div>
-    <div class="end_date">End Date</div>
-    <div class="budget">Budget</div>
+    <div id="toInsert"></div>
     <div style="position:relative" class="gantt" id="GanttChartDIV"></div>
 
     <script
@@ -87,17 +83,27 @@
 
     <!-- DYNAMICALLY LOAD THE PROJECT TITLE -->
     <script>
-      var projectTitle = document.getElementsByClassName("proj_title");
-      var startDate = document.getElementsByClassName("start_date");
-      var endDate = document.getElementsByClassName("end_date");
-      var budget = document.getElementsByClassName("budget");
-      //to set project details
-      for(var i = 0; i < projectTitle.length;i++){
-        projectTitle[i].innerHTML='test';
-        startDate[i].innerHTML;
-        endDate[i].innerHTML;
-        budget[i].innerHTML;
-      }
+      var toInsert = document.getElementById('toInsert');
+
+      var arr = []; //AJAX REQUEST
+      arr.forEach(x => {
+        var project = document.createElement('div');
+
+        var projectTitle = document.createElement('div');
+        projectTitle.innerHTML = x.projectTitile;
+        var startDate = document.createElement('div');
+        startDate.innerHTML = x.startDate;
+        var endDate = document.createElement('div');
+        endDate.innerHTML = x.endDate;
+        var budget = document.createElement('div');
+        budget.innerHTML = x.budget;
+        project.appendChild(projectTitle)
+        project.appendChild(startDate);
+        project.appendChild(endDate);
+        project.appendChild(budget);
+        toInsert.appendChild(project);
+      });
+
     </script>
     <!-- DYNAMICALLY LOAD THE PROJECT TITLE -->
     <script>
@@ -387,7 +393,7 @@
 
             //Button for submitting
             var submitButton = document.createElement('button');
-            
+
             submitButton.innerHTML = 'Assign Task';
             submitButton.setAttribute(
               'style',
@@ -395,10 +401,10 @@
             );
 
             //AJAX REQUEST FOR BUTTON
-            submitButton.onclick = function () {
+            submitButton.onclick = function() {
               var selectedPerson = selectList.value;
               //DO AJAX REQUEST TO FIREBASE
-            }
+            };
 
             newModalBody.appendChild(submitButton);
             modalBody.appendChild(newModalBody);
