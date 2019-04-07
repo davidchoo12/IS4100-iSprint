@@ -144,17 +144,34 @@
             //Once add button is clicked
             $(addButton).click(function(){
 
-                    var datepicker_task = 'datepicker_task' + taskCounter;
+                    var datepicker_task = 'datepicker_task' + taskCounter
+                    var role_task = 'role_task' + taskCounter;
 
-                    var fieldHTML ='<br><br><hr><br><br><div class="input-group"> <label class="label task_title"><i>Sprint Task ' + taskCounter +'</i></label> <label class="label">Task Name</label> <input class="input--style-4" name="task_name[]"> </div><div class="input-group"> <label class="label">Task Description</label> <textarea style="width:100%; height: 100px; border:0px" class="input--style-4" type="text" rows="5" name="task_desc[]"></textarea></div> <div class="input-group"> <label class="label">Start and end date of Task</label> <div class="input-group-icon"> <input class="input--style-4 '+datepicker_task+'" type="text" name="task_start_date[]"> <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i> </div> </div><div class="input-group"> <label class="label">Suggested Role</label> <input class="input--style-4" name="task_role[]"> </div>';
+                    var fieldHTML ='<br><br><hr><br><br><div class="input-group"> <label class="label task_title"><i>Sprint Task ' + taskCounter +'</i></label> <label class="label">Task Name</label> <input class="input--style-4" name="task_name[]"> </div><div class="input-group"> <label class="label">Task Description</label> <textarea style="width:100%; height: 100px; border:0px" class="input--style-4" type="text" rows="5" name="task_desc[]"></textarea></div><div class="input-group"> <label class="label">Start and end date of Task</label> <div class="input-group-icon"> <input class="input--style-4 '+datepicker_task+'" type="text" name="task_start_date[]"> <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i> </div></div><div class="input-group"> <label class="label">Suggested Role</label> <div class="rs-select2 '+role_task+' select--no-search"> <select name="task_role[]"> <option disabled="disabled" selected="selected">Choose option</option> <option>Quality Assurance</option> <option>UI/UX</option> <option>Backend developer</option> <option>Frontend developer</option> <option>Systems Analyst</option> </select> <div class="select-dropdown"></div> </div> </div>';
 
                     taskCounter++; //Increment field counter
 
 
                     $(fieldHTML).insertBefore(newTaskDiv)
 
+                    try { //rerun library for dynamically generated sprint tasks role selector html
+                        var selectSimple = $('.'+role_task);
+                    
+                        selectSimple.each(function () {
+                            var that = $(this);
+                            var selectBox = that.find('select');
+                            var selectDropdown = that.find('.select-dropdown');
+                            selectBox.select2({
+                                dropdownParent: selectDropdown
+                            });
+                        });
+                    
+                    } catch (err) {
+                        console.log(err);
+                    }
 
-                    try {
+
+                    try {//rerun library for dynamically generated sprint tasks datepicker html
                         $('.'+datepicker_task).daterangepicker({
                            // "singleDatePicker": true,
                             "showDropdowns": true,
