@@ -131,16 +131,62 @@
             //Once add button is clicked
             $(addButton).click(function(){
 
-                    var fieldHTML ='<br><br><hr><br><br><div class="input-group"> <label class="label task_title"><i>Sprint Task ' + taskCounter +'</i></label> <label class="label">Task Name</label> <input class="input--style-4" name="task_name[]"> </div> <div class="input-group"> <label class="label">Task Description</label> <textarea style="width:100%; height: 100px; border:0px" class="input--style-4" type="text" rows = "5" name= "task_desc[]"></textarea> </div> <div class="row row-space"> <div class="col-2"> <div class="input-group"> <label class="label">Start Date</label> <div class="input-group-icon"> <input class="input--style-4 js-datepicker" type="text" name="task_start_date[]"> <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i> </div> </div> </div> <div class="col-2"> <div class="input-group"> <label class="label">End Date</label> <div class="input-group-icon"> <input class="input--style-4 js-datepicker" type="text" name="task_end_date[]"> <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i> </div> </div> </div> </div> <div class="input-group"> <label class="label">Suggested Role</label> <input class="input--style-4" name="task_role[]"> </div>';
+                    var datepicker_task = 'datepicker_task' + taskCounter;
+
+                    var fieldHTML ='<br><br><hr><br><br><div class="input-group"> <label class="label task_title"><i>Sprint Task ' + taskCounter +'</i></label> <label class="label">Task Name</label> <input class="input--style-4" name="task_name[]"> </div> <div class="input-group"> <label class="label">Task Description</label> <textarea style="width:100%; height: 100px; border:0px" class="input--style-4" type="text" rows = "5" name= "task_desc[]"></textarea> </div> <div class="row row-space"> <div class="col-2"> <div class="input-group"> <label class="label">Start Date</label> <div class="input-group-icon"> <input class="input--style-4 '+datepicker_task+'" type="text" name="task_start_date[]"> <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i> </div> </div> </div> <div class="col-2"> <div class="input-group"> <label class="label">End Date</label> <div class="input-group-icon"> <input class="input--style-4  '+datepicker_task+'" type="text" name="task_end_date[]"> <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i> </div> </div> </div> </div> <div class="input-group"> <label class="label">Suggested Role</label> <input class="input--style-4" name="task_role[]"> </div>';
 
                     taskCounter++; //Increment field counter
-                    //$(".js-datepicker").datepicker();
-                    reload_datepicker(src)
 
-                    //$(wrapper).remove(newTaskDiv)
-                    //$(wrapper).append(fieldHTML); //Add field html
-                    //$(wrapper).append(newTaskDiv);
+
                     $(fieldHTML).insertBefore(newTaskDiv)
+
+
+                    try {
+                       
+                        $('.'+datepicker_task).daterangepicker({
+                            "singleDatePicker": true,
+                            "showDropdowns": true,
+                            "autoUpdateInput": true,
+                            locale: {
+                                format: 'DD/MM/YYYY'
+                            },
+                        });
+                        
+                        var myCalendar = $('.datepicker_task_start1');
+                        var isClick = 0;
+                    
+                        $(window).on('click',function(){
+                            isClick = 0;
+                        });
+                    
+                        $(myCalendar).on('apply.daterangepicker',function(ev, picker){
+                            isClick = 0;
+                            $(this).val(picker.startDate.format('DD/MM/YYYY'));
+                    
+                        });
+                    
+                        $('.js-btn-calendar').on('click',function(e){
+                            e.stopPropagation();
+                    
+                            if(isClick === 1) isClick = 0;
+                            else if(isClick === 0) isClick = 1;
+                    
+                            if (isClick === 1) {
+                                myCalendar.focus();
+                            }
+                        });
+                    
+                        $(myCalendar).on('click',function(e){
+                            e.stopPropagation();
+                            isClick = 1;
+                        });
+                    
+                        $('.daterangepicker').on('click',function(e){
+                            e.stopPropagation();
+                        });
+                    
+                }
+                catch(er) {console.log(er);}
                 
             });
             
@@ -153,14 +199,24 @@
         });
         </script>
        
-        <script>// reload datepicker js library for new tasks
-            function reload_datepicker(src) {
-                $('script[src="' + src + '"]').remove();
-                $('<script>').attr('src', src).appendTo('body');
-            }
-            //reload_js('source_file.js');
-        </script>
+        <script>
 
+            // $(function() {
+             
+            //     $(document).on("click",".datepicker_task_start1",function(){   
+            //         console.log('hi2')     
+            //         $(this).datepicker({                        
+            //                 changeMonth: true,
+            //                 changeYear: true,
+            //                 dateFormat: 'yy-mm-dd'                       
+            //             }).datepicker("show");
+            //     });
+                         
+            // });
+
+
+        </script>
+        
   <script>
     // $(function(){
     //   $('#header').load('header_component.html');
