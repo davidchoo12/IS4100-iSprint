@@ -71,7 +71,7 @@
                                 <div class="input-group">
                                     <label class="label">Start Date</label>
                                     <div class="input-group-icon">
-                                        <input class="input--style-4 js-datepicker" type="text" name="start_date">
+                                        <input class="input--style-4 js-datepicker" type="text" name="sprint_start_date">
                                         <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                                     </div>
                                 </div>
@@ -80,7 +80,7 @@
                                 <div class="input-group">
                                     <label class="label">End Date</label>
                                     <div class="input-group-icon">
-                                        <input class="input--style-4 js-datepicker" type="text" name="end_date">
+                                        <input class="input--style-4 js-datepicker" type="text" name="sprint_end_date">
                                         <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
                                     </div>
                                 </div>
@@ -89,20 +89,17 @@
 
                         <div class="input-group">
                             <label class="label">Sprint Description</label>
-                            <textarea style="width:100%; height: 100px; border:0px" class="input--style-4" type="text" rows = "5" name = "description"></textarea>
+                            <textarea style="width:100%; height: 100px; border:0px" class="input--style-4" type="text" rows = "5" name = "sprint_desc"></textarea>
                         </div>
                         <div class="input-group">
                             <label class="label">Sprint Budget</label>
                             <input class="input--style-4" type="number" name="sprint_budget">
                         </div>
-
-                        
                         <div class="field_wrapper">
                             <div class="new_task">
                                 <input type="text" name="field_name[]" value=""/>
                                 <a href="javascript:void(0);" class="add_task_button btn btn--radius-2 btn--green" title="Add field"><span class="glyphicon glyphicon-plus"></span>Add Sprint Task</div></a>
                         </div>
-
                         <div class="p-t-15">
                             <button style="width:100%" class="btn btn--radius-2 btn--blue" type="submit">Create new Sprint</button>
                         </div>
@@ -127,7 +124,6 @@
             var addButton = $('.add_task_button'); //Add button selector
             var wrapper = $('.field_wrapper'); //Input field wrapper
             var newTaskDiv = $('.new_task'); //Input field wrapper
-            var fieldHTML = '<div><input type="text" name="field_name[]" value=""/><a href="javascript:void(0);" class="remove_button"><img src="remove-icon.png"/></a></div>'; //New input field html 
 
             var taskCounter = 1; //Initial field counter is 1
             var src = "colorlib-regform-4/vendor/datepicker/daterangepicker.js";
@@ -135,7 +131,7 @@
             //Once add button is clicked
             $(addButton).click(function(){
 
-                    var fieldHTML ='<br><br><hr><br><br><div class="input-group"> <label class="label task_title"><i>Sprint Task ' +taskCounter +'</i></label> <label class="label">Task Name</label> <input class="input--style-4" name="task_name[]"> </div> <div class="input-group"> <label class="label">Task Description</label> <textarea style="width:100%; height: 100px; border:0px" class="input--style-4" type="text" rows = "5" name = "task_1_description"></textarea> </div> <div class="row row-space"> <div class="col-2"> <div class="input-group"> <label class="label">Start Date</label> <div class="input-group-icon"> <input class="input--style-4 js-datepicker" type="text" name="task_start_date[]"> <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i> </div> </div> </div> <div class="col-2"> <div class="input-group"> <label class="label">End Date</label> <div class="input-group-icon"> <input class="input--style-4 js-datepicker" type="text" name="task_end_date[]"> <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i> </div> </div> </div> </div> <div class="input-group"> <label class="label">Suggested Role</label> <input class="input--style-4" name="task_role[]"> </div>';
+                    var fieldHTML ='<br><br><hr><br><br><div class="input-group"> <label class="label task_title"><i>Sprint Task ' + taskCounter +'</i></label> <label class="label">Task Name</label> <input class="input--style-4" name="task_name[]"> </div> <div class="input-group"> <label class="label">Task Description</label> <textarea style="width:100%; height: 100px; border:0px" class="input--style-4" type="text" rows = "5" name= "task_desc[]"></textarea> </div> <div class="row row-space"> <div class="col-2"> <div class="input-group"> <label class="label">Start Date</label> <div class="input-group-icon"> <input class="input--style-4 js-datepicker" type="text" name="task_start_date[]"> <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i> </div> </div> </div> <div class="col-2"> <div class="input-group"> <label class="label">End Date</label> <div class="input-group-icon"> <input class="input--style-4 js-datepicker" type="text" name="task_end_date[]"> <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i> </div> </div> </div> </div> <div class="input-group"> <label class="label">Suggested Role</label> <input class="input--style-4" name="task_role[]"> </div>';
 
                     taskCounter++; //Increment field counter
                     //$(".js-datepicker").datepicker();
