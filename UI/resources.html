@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>iSprint</title>
+    <link rel="stylesheet" href="elements/common.css">
+    <link href="jsgantt-improved-master/docs/jsgantt.css" rel="stylesheet" type="text/css"/>
+
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+    </style>
+  </head>
+
+  <body>
+    <div class="row logoDiv">
+      <img src="elements/logo_transparent.png" class="logo" alt="iSprint" width="200"height="60">
+    </div>
+
+    <nav id="menu">
+      <ul>
+        <li>
+          <a href="index.html">Home</a>
+        </li>
+        <li class="dropdown">
+          <a class="dropbtn" ref="sprint_gantt.html">Projects</a>
+          <div class="dropdown-content">
+            <a class="submenu" href="index.html">Overview</a>
+            <a class="submenu" href="create_project.html">Create Project</a>
+          </div>
+        </li>
+        <li>
+          <a href="sprint_gantt.html">Sprints</a>
+        </li>
+
+        <li>
+          <a href="#">Members</a>
+        </li>
+      </ul>
+    </nav>
+
+    <main>
+    <div class='chartDiv'>
+      <canvas id="timeContribution" ></canvas>
+      <br>
+      <canvas id="cumulativeCost" ></canvas>
+    </div>
+
+    
+
+    </main>
+  <!-- chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script> 
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="jsgantt-improved-master/docs/jsgantt.js" type="text/javascript"></script>
+  <script>
+    var ctx = document.getElementById('timeContribution').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'horizontalBar',
+
+        // The data for our dataset
+        data: {
+            labels: ['Alex', 'Bob', 'Charlie', 'Dex', 'Eddy', 'Fara'],
+            datasets: [{
+                label: 'Contribution to project X',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [10, 10, 5, 2, 20, 30]
+            },
+            {
+                label: 'Contribution to project Y',
+                backgroundColor: '#B6D5E1',
+                borderColor: 'B6D5E1',
+                data: [5, 15, 5, 10, 8, 10]
+            }],
+        },
+
+        // Configuration options go here
+        
+        options: {
+          scales: {
+            xAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'Days'
+              }
+            }]
+          }     
+        }
+
+
+    });
+  </script>
+  <script>
+    var ctx = document.getElementById('cumulativeCost').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'horizontalBar',
+
+        // The data for our dataset
+        data: {
+            labels: ['Alex', 'Bob', 'Charlie', 'Dex', 'Eddy', 'Fara'],
+            datasets: [{
+                label: 'Manpower Cost for Project X',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [1000, 20000, 10000, 8000, 4000, 5000]
+            },
+            {
+                label: 'Manpower Cost for Project Y',
+                backgroundColor: '#B6D5E1',
+                borderColor: 'B6D5E1',
+                data: [2000, 5000, 13000, 3000, 5000, 4000]
+            }],
+        },
+
+        // Configuration options go here
+        
+        options: {
+          scales: {
+            xAxes: [{
+              scaleLabel: {
+                display: true,
+                labelString: 'SGD($)'
+              }
+            }]
+          }     
+        }
+
+
+    });
+  </script>
+  <script>
+    // $(function(){
+    //   $('#header').load('header_component.html');
+    // });
+
+    // When the user scrolls the page, execute myFunction 
+    window.onscroll = function() {myFunction()};
+
+    // Get the header
+    var header = document.getElementById("menu");
+
+    // Get the offset position of the navbar
+    var sticky = header.offsetTop;
+
+    // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+    function myFunction() {
+      if (window.pageYOffset > sticky) {
+        header.classList.add("sticky");
+      } else {
+        header.classList.remove("sticky");
+      }
+    }
+  </script>
+
+ 
+
+</body>
+</html>
+

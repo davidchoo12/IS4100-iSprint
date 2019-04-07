@@ -132,4 +132,8 @@
         width:100%;
         text-align: center;
       }
+      .chartDiv{
+        width: 60%;
+        margin: auto;
+      }
     </style>

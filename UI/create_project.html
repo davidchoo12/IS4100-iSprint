@@ -66,24 +66,12 @@
                             <label class="label">Project Name</label>
                             <input class="input--style-4" type="text" name="project_name">
                         </div>
-                        <div class="row row-space">
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">Start Date</label>
-                                    <div class="input-group-icon">
-                                        <input class="input--style-4 js-datepicker" type="text" name="start_date">
-                                        <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="input-group">
-                                    <label class="label">End Date</label>
-                                    <div class="input-group-icon">
-                                        <input class="input--style-4 js-datepicker" type="text" name="end_date">
-                                        <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
-                                    </div>
-                                </div>
+
+                        <div class="input-group">
+                            <label class="label">Start/End Date of Project</label>
+                            <div class="input-group-icon">
+                                <input class="input--style-4 js-datepicker2" type="text" name="project_date"> 
+                              <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i> 
                             </div>
                         </div>
 
@@ -113,11 +101,24 @@
 
     <!-- Main JS-->
     <script src="colorlib-regform-4/js/global.js"></script>
+    <script>
 
+         $(document).ready(function(){
+            let today = new Date().toLocaleDateString();
+            $('.js-datepicker2').daterangepicker({
+                "showDropdowns": true,
+                "autoUpdateInput": true,
+                "minDate": today,
+                "autoApply": true,
+
+                locale: {
+                    format: 'DD/MM/YYYY'
+                },
+            });
+         });
+    </script>
   <script>
-    // $(function(){
-    //   $('#header').load('header_component.html');
-    // });
+
 
     // When the user scrolls the page, execute myFunction 
     window.onscroll = function() {myFunction()};
