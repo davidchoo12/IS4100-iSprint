@@ -15,7 +15,7 @@ const googleConfig = {
   // redirect: process.env.GOOGLE_REDIRECT_URL, // http://localhost:8080
   clientId: '831029033856-hbctj89ri5ictjecak6e4sbkv7sp0fas.apps.googleusercontent.com',
   clientSecret: 'XtnE56ABwKyf1vC1Tw3ckPib',
-  redirect: 'http://localhost:8080'
+  redirect: process.env.HTTPS == 'true' ? 'https://localhost:8080/auth' : 'http://localhost:8080/auth'
 };
 
 const defaultScope = [
@@ -48,27 +48,30 @@ function getConnectionUrl(auth) {
   });
 }
 
-function getGooglePlusApi(auth) {
+function getGooglePlusApi() {
   return google.plus({ version: 'v1', auth });
 }
 
-function getGoogleCalendarApi(auth) {
+function getGoogleCalendarApi() {
+  auth.setCredentials(tokens);
   return google.calendar({ version: 'v3', auth});
 }
 
-function getGoogleOAuth2(auth) {
+function getGoogleOAuth2() {
+  auth.setCredentials(tokens);
   return google.oauth2({ version: 'v2', auth});
 }
 
 /**********/
 /** MAIN **/
 /**********/
-
+let tokens; // to store the oauth token
+let auth = createConnection();
 /**
  * Part 1: Create a Google URL and send to the client to log in the user.
  */
 function urlGoogle() {
-  const auth = createConnection();
+  // const auth = createConnection();
   const url = getConnectionUrl(auth);
   return url;
 }
@@ -77,7 +80,7 @@ function urlGoogle() {
  * Part 2: Take the "code" parameter which Google gives us once when the user logs in, then get the user's email and id.
  */
 async function getGoogleAccountFromCode(code) {
-  const auth = createConnection();
+  // const auth = createConnection();
   let data;
   try {
     data = await auth.getToken(code);
@@ -86,6 +89,7 @@ async function getGoogleAccountFromCode(code) {
     return e.response.data;
   }
   const tokens = data.tokens;
+  // console.log('tokens', tokens);
   // const auth = createConnection();
   auth.setCredentials(tokens);
   const oauth2 = getGoogleOAuth2(auth);
@@ -98,7 +102,7 @@ async function getGoogleAccountFromCode(code) {
       }
       resolve(r);
     }));
-    console.log(me.data);
+    // console.log(me.data);
     return me.data;
   } catch (e) {
     console.log('errrr');
@@ -115,10 +119,46 @@ async function getGoogleAccountFromCode(code) {
   // };
 }
 
+async function getOAuthTokenFromCode(code) {
+  // const auth = createConnection();
+  let data;
+  try {
+    data = await auth.getToken(code);
+  } catch (e) {
+    console.log(e.response.data);
+    return e.response.data;
+  }
+  tokens = data.tokens;
+  return tokens;
+}
+
+function getFreebusy(calendarIds, startDate, endDate) {
+  // auth.setCredentials(tokens);
+  console.log(calendarIds.map(e => ({id: e})));
+  const calendar = google.calendar({ version: 'v3', auth});
+  return calendar.freebusy.query({
+    auth: auth,
+    resource: {
+      timeMin: new Date(startDate).toISOString(), //'2019-04-01T00:00:00+08:00', //(new Date()).toISOString(),
+      timeMax: new Date(endDate).toISOString(),
+      items: calendarIds.map(e => ({id: e}))
+      // items: [
+      //   {
+      //     id: 'johnnydolanplaceholder@gmail.com'
+      //   }
+      // ]
+    }
+  });
+}
+
+
 module.exports = {
   createConnection,
   getConnectionUrl,
-  getGooglePlusApi,
+  getGoogleCalendarApi,
+  getGoogleOAuth2,
   urlGoogle,
-  getGoogleAccountFromCode
+  getGoogleAccountFromCode,
+  getOAuthTokenFromCode,
+  getFreebusy
 }

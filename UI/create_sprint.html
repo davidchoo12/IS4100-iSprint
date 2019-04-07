@@ -30,27 +30,23 @@
 <body>
 
     <div class="row logoDiv">
-      <img src="elements/logo_transparent.png" class="logo" alt="iSprint" width="200"height="60">
+      <img src="/elements/logo_transparent.png" class="logo" alt="iSprint" width="200"height="60">
     </div>
 
+    
     <nav id="menu">
       <ul>
         <li>
-          <a href="index.html">Home</a>
+          <a href="/">Home</a>
         </li>
         <li class="dropdown">
           <a class="dropbtn" ref="sprint_gantt.html">Projects</a>
           <div class="dropdown-content">
-            <a class="submenu" href="index.html">Overview</a>
-            <a class="submenu" href="create_project.html">Create Project</a>
+            <a class="submenu" href="/project/new">Create Project</a>
           </div>
         </li>
         <li>
-          <a href="sprint_gantt.html">Sprints</a>
-        </li>
-
-        <li>
-          <a href="#">Members</a>
+          <a href="">Members</a>
         </li>
       </ul>
     </nav>
@@ -60,7 +56,7 @@
         <div class="wrapper wrapper--w680">
             <div class="card card-4">
                 <div class="card-body">
-                    <h2 class="title">Create new Sprint for Project X</h2>
+                    <h2 class="title">Create new Sprint for ${ d.projectName }</h2>
                     <form method="POST">
                         <div class="input-group">
                             <label class="label">Sprint Name</label>
@@ -146,7 +142,7 @@
                     var datepicker_task = 'datepicker_task' + taskCounter
                     var role_task = 'role_task' + taskCounter;
 
-                    var fieldHTML ='<br><br><hr><br><br><div class="input-group"> <label class="label task_title"><i>Sprint Task ' + taskCounter +'</i></label> <label class="label">Task Name</label> <input class="input--style-4" name="task_name[]"> </div><div class="input-group"> <label class="label">Task Description</label> <textarea style="width:100%; height: 100px; border:0px" class="input--style-4" type="text" rows="5" name="task_desc[]"></textarea></div><div class="input-group"> <label class="label">Start and end date of Task</label> <div class="input-group-icon"> <input class="input--style-4 '+datepicker_task+'" type="text" name="task_start_date[]"> <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i> </div></div><div class="input-group"> <label class="label">Suggested Role</label> <div class="rs-select2 '+role_task+' select--no-search"> <select name="task_role[]"> <option disabled="disabled" selected="selected">Choose option</option> <option>UI/UX</option> <option>Backend developer</option> <option>Frontend developer</option> </select> <div class="select-dropdown"></div> </div> </div>';
+                    var fieldHTML ='<br><br><hr><br><br><div class="input-group"> <label class="label task_title"><i>Sprint Task ' + taskCounter +'</i></label> <label class="label">Task Name</label> <input class="input--style-4" name="task_name[]"> </div><div class="input-group"> <label class="label">Task Description</label> <textarea style="width:100%; height: 100px; border:0px" class="input--style-4" type="text" rows="5" name="task_desc[]"></textarea></div><div class="input-group"> <label class="label">Start and end date of Task</label> <div class="input-group-icon"> <input class="input--style-4 '+datepicker_task+'" type="text" name="task_start_date[]"> <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i> </div></div><div class="input-group"> <label class="label">Suggested Role</label> <div class="rs-select2 '+role_task+' select--no-search"> <select name="task_role[]"> <option disabled="disabled" selected="selected">Choose option</option> <option value="uiux">UI/UX</option> <option value="backend">Backend developer</option> <option value="frontend">Frontend developer</option> </select> <div class="select-dropdown"></div> </div> </div>';
 
                     taskCounter++; //Increment field counter
 

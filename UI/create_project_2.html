@@ -10,18 +10,18 @@
     <title>iSprint</title>
 
     <!-- Icons font CSS-->
-    <link href="colorlib-regform-4/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-    <link href="colorlib-regform-4/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="/colorlib-regform-4/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="/colorlib-regform-4/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
     <!-- Font special for pages-->
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Vendor CSS-->
-    <link href="colorlib-regform-4/vendor/select2/select2.min.css" rel="stylesheet" media="all">
-    <link href="colorlib-regform-4/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+    <link href="/colorlib-regform-4/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="/colorlib-regform-4/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
 
     <!-- Main CSS-->
-    <link href="colorlib-regform-4/css/main.css" rel="stylesheet" media="all">
-        <link rel="stylesheet" href="elements/common.css"> <!-- css used for common elements (header etc.) -->
+    <link href="/colorlib-regform-4/css/main.css" rel="stylesheet" media="all">
+        <link rel="stylesheet" href="/elements/common.css"> <!-- css used for common elements (header etc.) -->
     <style>
       @import url(https://fonts.googleapis.com/css?family=Open+Sans);
     </style>
@@ -30,7 +30,7 @@
 <body>
 
     <div class="row logoDiv">
-      <img src="elements/logo_transparent.png" class="logo" alt="iSprint" width="200"height="60">
+      <img src="/elements/logo_transparent.png" class="logo" alt="iSprint" width="200"height="60">
     </div>
 
     <nav id="menu">
@@ -61,7 +61,7 @@
             <div class="card card-4">
                 <div class="card-body">
                     <h2 class="title">Let's get started on a new Project</h2>
-                    <form method="POST">
+                    <form method="POST" action="/project/new">
                         <div class="input-group">
                             <label class="label">Project Name</label>
                             <input class="input--style-4" type="text" name="project_name">
@@ -93,7 +93,7 @@
                         </div>
                         <div class="input-group">
                             <label class="label">Project Budget</label>
-                            <input class="input--style-4" type="number" name="project_budget">
+                            <input class="input--style-4" type="number" name="budget">
                         </div>
                         <div class="p-t-15">
                             <button class="btn btn--radius-2 btn--blue" type="submit">Create new Project</button>
@@ -105,14 +105,14 @@
     </div>
 
     <!-- Jquery JS-->
-    <script src="colorlib-regform-4/vendor/jquery/jquery.min.js"></script>
+    <script src="/colorlib-regform-4/vendor/jquery/jquery.min.js"></script>
     <!-- Vendor JS-->
-    <script src="colorlib-regform-4/vendor/select2/select2.min.js"></script>
-    <script src="colorlib-regform-4/vendor/datepicker/moment.min.js"></script>
-    <script src="colorlib-regform-4/vendor/datepicker/daterangepicker.js"></script>
+    <script src="/colorlib-regform-4/vendor/select2/select2.min.js"></script>
+    <script src="/colorlib-regform-4/vendor/datepicker/moment.min.js"></script>
+    <script src="/colorlib-regform-4/vendor/datepicker/daterangepicker.js"></script>
 
     <!-- Main JS-->
-    <script src="colorlib-regform-4/js/global.js"></script>
+    <script src="/colorlib-regform-4/js/global.js"></script>
 
   <script>
     // $(function(){

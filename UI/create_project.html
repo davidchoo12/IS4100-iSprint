@@ -10,18 +10,18 @@
     <title>iSprint</title>
 
     <!-- Icons font CSS-->
-    <link href="colorlib-regform-4/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-    <link href="colorlib-regform-4/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="/colorlib-regform-4/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="/colorlib-regform-4/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
     <!-- Font special for pages-->
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Vendor CSS-->
-    <link href="colorlib-regform-4/vendor/select2/select2.min.css" rel="stylesheet" media="all">
-    <link href="colorlib-regform-4/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+    <link href="/colorlib-regform-4/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="/colorlib-regform-4/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
 
     <!-- Main CSS-->
-    <link href="colorlib-regform-4/css/main.css" rel="stylesheet" media="all">
-        <link rel="stylesheet" href="elements/common.css"> <!-- css used for common elements (header etc.) -->
+    <link href="/colorlib-regform-4/css/main.css" rel="stylesheet" media="all">
+        <link rel="stylesheet" href="/elements/common.css"> <!-- css used for common elements (header etc.) -->
     <style>
       @import url(https://fonts.googleapis.com/css?family=Open+Sans);
     </style>
@@ -30,27 +30,22 @@
 <body>
 
     <div class="row logoDiv">
-      <img src="elements/logo_transparent.png" class="logo" alt="iSprint" width="200"height="60">
+      <img src="/elements/logo_transparent.png" class="logo" alt="iSprint" width="200"height="60">
     </div>
 
     <nav id="menu">
       <ul>
         <li>
-          <a href="index.html">Home</a>
+          <a href="/">Home</a>
         </li>
         <li class="dropdown">
           <a class="dropbtn" ref="sprint_gantt.html">Projects</a>
           <div class="dropdown-content">
-            <a class="submenu" href="index.html">Overview</a>
-            <a class="submenu" href="create_project.html">Create Project</a>
+            <a class="submenu" href="/project/new">Create Project</a>
           </div>
         </li>
         <li>
-          <a href="sprint_gantt.html">Sprints</a>
-        </li>
-
-        <li>
-          <a href="#">Members</a>
+          <a href="">Members</a>
         </li>
       </ul>
     </nav>
@@ -81,7 +76,7 @@
                         </div>
                         <div class="input-group">
                             <label class="label">Project Budget</label>
-                            <input class="input--style-4" type="number" name="project_budget">
+                            <input class="input--style-4" type="number" name="budget">
                         </div>
                         <div class="p-t-15">
                             <button style="width:100%" class="btn btn--radius-2 btn--blue" type="submit">Create new Project</button>
@@ -93,14 +88,14 @@
     </div>
 
     <!-- Jquery JS-->
-    <script src="colorlib-regform-4/vendor/jquery/jquery.min.js"></script>
+    <script src="/colorlib-regform-4/vendor/jquery/jquery.min.js"></script>
     <!-- Vendor JS-->
-    <script src="colorlib-regform-4/vendor/select2/select2.min.js"></script>
-    <script src="colorlib-regform-4/vendor/datepicker/moment.min.js"></script>
-    <script src="colorlib-regform-4/vendor/datepicker/daterangepicker.js"></script>
+    <script src="/colorlib-regform-4/vendor/select2/select2.min.js"></script>
+    <script src="/colorlib-regform-4/vendor/datepicker/moment.min.js"></script>
+    <script src="/colorlib-regform-4/vendor/datepicker/daterangepicker.js"></script>
 
     <!-- Main JS-->
-    <script src="colorlib-regform-4/js/global.js"></script>
+    <script src="/colorlib-regform-4/js/global.js"></script>
     <script>
 
          $(document).ready(function(){
