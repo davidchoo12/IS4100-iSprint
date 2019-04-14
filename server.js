@@ -38,7 +38,7 @@ function ensureLoggedIn(req, res, next) {
   }
 }
 
-app.get('/', (req, res) => { // todo add ensureLoggedIn
+app.get('/', ensureLoggedIn, (req, res) => { // todo add ensureLoggedIn
   firestore.getProjects('patrick.isprintdemo@gmail.com')
   .then(ss => {
     let data = [];
@@ -88,13 +88,13 @@ app.get('/project/:id/sprint', (req, res) => {
         pPlanStart: '', // required
         pPlanEnd: '', // required
         pClass: 'ggroupblack',
-        pRes: t.assignee || '', // person assigned only apply for task
+        pRes: t.assigned || '', // person assigned only apply for task
         pComp: 0, // required
         pGroup: 0, // 0 for task, 1 for sprint
         pParent: sprintId, // pid of parent
         pOpen: 1, // required
         pCost: 0, // budget
-        pNotes: t.desc || '', // descr
+        pNotes: t.description || '', // descr
         role: t.role || '', // apply for tasks the role
       }));
       tasksArr.unshift(sprintJson);
@@ -174,27 +174,42 @@ app.get('/members', async (req, res) => {
       })
     }
     res.send(result);
-  }).catch(console.log);
-  // calendar.
-  // res.send([{
-  //   name: 'name',
-  //   email: 'email',
-  //   available: false
-  // },
-  // {
-  //   name: 'name2',
-  //   email: 'email',
-  //   available: true
-  // }]);
-  // res.send(users);
+  }).catch(err => {
+    console.log(err);
+    res.status(401).send(err);
+  });
+});
+
+app.get('/assign', async (req, res) => {
+  const { projectId, sprintName, taskName, assigned } = req.query;
+  let project = await firestore.getProject(projectId).then(doc => doc.data());
+  let sprint = project.sprints.find(e => e.name == sprintName);
+  const sprintIndex = project.sprints.indexOf(sprint);
+  let task = sprint.tasks.find(e => e.name == taskName);
+  const taskIndex = sprint.tasks.indexOf(task);
+  project.sprints[sprintIndex].tasks[taskIndex].assigned = assigned;
+  firestore.updateProject(projectId, project);
+  // res.send(project);
+  const startDate = task.start_date.split('/').reverse().join('-'); // convert dd/mm/yyyy to yyyy-mm-dd
+  const endDate = task.end_date.split('/').reverse().join('-');
+  googlehelper.addEventToCalendar(assigned, task.name, task.desc || '', startDate, endDate)
+  .then(r => {
+    let data = r.data;
+    res.redirect('/');
+  }).catch(err => {
+    console.log(err);
+    res.status(401).send(err);
+  });
 });
 
 // new project form post to here
 app.post('/project/new', ensureLoggedIn, (req, res) => {
-  let { project_name, ...toSave } = req.body;
+  let { project_name, project_date, ...toSave } = req.body;
   toSave = {
     ...toSave,
     name: project_name,
+    start_date: project_date.split(' - ')[0],
+    end_date: project_date.split(' - ')[1],
     owner: req.session.email
   };
   firestore.addProject(toSave)
@@ -205,6 +220,7 @@ app.post('/project/new', ensureLoggedIn, (req, res) => {
     res.redirect('/');
   });
 });
+// create new sprint
 app.post('/project/:id/sprint/new', (req, res) => {
   let tasks = [];
   if (req.body.task_name) {
@@ -218,8 +234,8 @@ app.post('/project/:id/sprint/new', (req, res) => {
   }
   const toSave = {
     name: req.body.sprint_name,
-    start_date: req.body.sprint_start_date,
-    end_date: req.body.sprint_end_date,
+    start_date: req.body.sprint_date.split(' - ')[0],
+    end_date: req.body.sprint_date.split(' - ')[1],
     description: req.body.sprint_desc || null,
     budget: req.body.sprint_budget,
     tasks

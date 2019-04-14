@@ -26,6 +26,9 @@ function getProject(projectId) {
 function addProject(project) {
   return db.collection('projects').add(project);
 }
+function updateProject(projectId, project) {
+  return db.collection('projects').doc(projectId).update(project);
+}
 function addSprintToProject(projectId, sprint) {
   return db.collection('projects').doc(projectId).update({
     sprints: admin.firestore.FieldValue.arrayUnion(sprint)
@@ -48,6 +51,7 @@ module.exports = {
   getProjects,
   getProject,
   addProject,
+  updateProject,
   addSprintToProject,
   saveUserIfNotExists,
   getUsersByRole

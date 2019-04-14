@@ -151,6 +151,24 @@ function getFreebusy(calendarIds, startDate, endDate) {
   });
 }
 
+function addEventToCalendar(calendarId, eventName, eventDesc, eventStart, eventEnd) {
+  const calendar = google.calendar({ version: 'v3', auth});
+  return calendar.events.insert({
+    auth,
+    calendarId,
+    resource: {
+      summary: eventName,
+      description: eventDesc,
+      start: {
+        date: eventStart
+      },
+      end: {
+        date: eventEnd
+      }
+    }
+  });
+}
+
 
 module.exports = {
   createConnection,
@@ -160,5 +178,6 @@ module.exports = {
   urlGoogle,
   getGoogleAccountFromCode,
   getOAuthTokenFromCode,
-  getFreebusy
+  getFreebusy,
+  addEventToCalendar
 }
