@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hidingmode/google-calendar-api-test.git"
+    "url": "git+https://github.com/hidingmode/is4100-isprint.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hidingmode/google-calendar-api-test/issues"
+    "url": "https://github.com/hidingmode/is4100-isprint/issues"
   },
-  "homepage": "https://github.com/hidingmode/google-calendar-api-test#readme",
+  "homepage": "https://github.com/hidingmode/is4100-isprint#readme",
   "dependencies": {
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
@@ -24,5 +24,8 @@
     "firebase-admin": "^7.2.0",
     "googleapis": "^39.2.0"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "engines": {
+    "node": "11.13.0"
+  }
 }
