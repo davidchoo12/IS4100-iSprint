@@ -8,7 +8,7 @@ const { google } = require('googleapis');
 /*******************/
 /** CONFIGURATION **/
 /*******************/
-
+console.log('google redirect url', process.env.GOOGLE_REDIRECT_URL || (process.env.HTTPS == 'true' ? 'https://localhost:8080/auth' : 'http://localhost:8080/auth'));
 const googleConfig = {
   // clientId: process.env.GOOGLE_CLIENT_ID, // 831029033856-hbctj89ri5ictjecak6e4sbkv7sp0fas.apps.googleusercontent.com
   // clientSecret: process.env.GOOGLE_CLIENT_SECRET, // e.g. XtnE56ABwKyf1vC1Tw3ckPib
