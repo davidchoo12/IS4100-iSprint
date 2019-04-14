@@ -15,7 +15,7 @@ const googleConfig = {
   // redirect: process.env.GOOGLE_REDIRECT_URL, // http://localhost:8080
   clientId: '831029033856-hbctj89ri5ictjecak6e4sbkv7sp0fas.apps.googleusercontent.com',
   clientSecret: 'XtnE56ABwKyf1vC1Tw3ckPib',
-  redirect: process.env.HTTPS == 'true' ? 'https://localhost:8080/auth' : 'http://localhost:8080/auth'
+  redirect: process.env.GOOGLE_REDIRECT_URL || (process.env.HTTPS == 'true' ? 'https://localhost:8080/auth' : 'http://localhost:8080/auth')
 };
 
 const defaultScope = [
