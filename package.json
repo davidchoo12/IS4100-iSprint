@@ -1,5 +1,5 @@
 {
-  "name": "google-calendar-api-test",
+  "name": "is4100-isprint",
   "version": "0.0.1",
   "description": "",
   "main": "server.js",
@@ -17,7 +17,6 @@
   },
   "homepage": "https://github.com/hidingmode/is4100-isprint#readme",
   "dependencies": {
-    "dotenv": "^7.0.0",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "express-tl": "^1.0.2",

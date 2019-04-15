@@ -1,9 +1,9 @@
-require('dotenv').config(); // setup env vars
+// require('dotenv').config(); // setup env vars
 const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
-const https = require('https');
-const fs = require('fs');
+// const https = require('https');
+// const fs = require('fs');
 const tl = require('express-tl')
 
 const googlehelper = require('./google');
@@ -20,7 +20,7 @@ app.use(session({
   secret: 'iloveis4100', // key to encrypt session cookies
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: process.env.HTTPS == 'true' }
+  cookie: { secure: false } // process.env.HTTPS == 'true'
 }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -38,7 +38,7 @@ function ensureLoggedIn(req, res, next) {
   }
 }
 
-app.get('/', ensureLoggedIn, (req, res) => { // todo add ensureLoggedIn
+app.get('/', ensureLoggedIn, (req, res) => {
   firestore.getProjects('patrick.isprintdemo@gmail.com')
   .then(ss => {
     let data = [];
@@ -64,7 +64,7 @@ app.get('/project/:id/sprint', (req, res) => {
     const sprints = doc.data().sprints || [];
     let data = sprints.flatMap((s, i) => {
       sprintId = c++;
-      console.log(s.start_date, s.end_date);
+      // console.log(s.start_date, s.end_date);
       let sprintJson = {
         pID: sprintId,
         pName: s.name,
@@ -118,8 +118,8 @@ app.get('/auth', async (req, res) => {
     req.session.cookie.expires = new Date(tokens.expiry_date);
     const oauth2 = googlehelper.getGoogleOAuth2();
     oauth2.userinfo.get((e, r) => {
-      console.log('errors', e);
-      console.log('response.data', r.data);
+      // console.log('errors', e);
+      // console.log('response.data', r.data);
       firestore.saveUserIfNotExists({
         name: r.data.name,
         email: r.data.email
@@ -175,7 +175,7 @@ app.get('/members', async (req, res) => {
     }
     res.send(result);
   }).catch(err => {
-    console.log(err);
+    console.error('googlehelper.getFreebusy catch', err);
     res.status(401).send(err);
   });
 });
@@ -191,13 +191,17 @@ app.get('/assign', async (req, res) => {
   firestore.updateProject(projectId, project);
   // res.send(project);
   const startDate = task.start_date.split('/').reverse().join('-'); // convert dd/mm/yyyy to yyyy-mm-dd
-  const endDate = task.end_date.split('/').reverse().join('-');
+  let endDate = task.end_date.split('/').reverse().join('-');
+  // add 1 day cos gcal endDate is exclusive
+  let endD = new Date(endDate);
+  endD.setDate(endD.getDate() + 1);
+  endDate = endD.toISOString().split('T')[0];
   googlehelper.addEventToCalendar(assigned, task.name, task.desc || '', startDate, endDate)
   .then(r => {
     let data = r.data;
     res.redirect('/');
   }).catch(err => {
-    console.log(err);
+    console.error('googlehelper.addEventToCalendar catch', err);
     res.status(401).send(err);
   });
 });
@@ -215,7 +219,7 @@ app.post('/project/new', ensureLoggedIn, (req, res) => {
   firestore.addProject(toSave)
   .then(ref => res.redirect('/'))
   .catch(err => {
-    console.log('aaaa');
+    console.error('firestore.addProject catch', err);
     // res.send(err);
     res.redirect('/');
   });
@@ -245,7 +249,7 @@ app.post('/project/:id/sprint/new', (req, res) => {
   firestore.addSprintToProject(req.params.id, toSave)
   .then(ref => res.redirect('/'))
   .catch(err => {
-    console.log('aaaa');
+    console.error('firestore.addSprintToProject catch', err);
     res.send(err);
   });
 });
@@ -293,19 +297,18 @@ app.get('/calendar', async (req, res) => {
 
 // app.use('/static', express.static(__dirname + '/static'));
 
-if (process.env.HTTPS == 'true') {
-  const httpsOptions = {
-    key: fs.readFileSync('./security/cert.key'),
-    cert: fs.readFileSync('./security/cert.pem')
-  }
-  const server = https.createServer(httpsOptions, app)
-    .listen(port, () => {
-        console.log('express server running HTTPS');
-        console.log('https://localhost:' + port + '/login');
-    })
-} else {
+// if (process.env.HTTPS == 'true') {
+//   const httpsOptions = {
+//     key: fs.readFileSync('./security/cert.key'),
+//     cert: fs.readFileSync('./security/cert.pem')
+//   }
+//   const server = https.createServer(httpsOptions, app)
+//     .listen(port, () => {
+//         console.log('express server running HTTPS');
+//         console.log('https://localhost:' + port + '/login');
+//     })
+// } else {
   app.listen(port);
-  console.log('express server running');
-  console.log('http://localhost:' + port + '/login');
-}
-// todo use https://github.com/Drulac/express-tl
+  console.log('express server running on port', port);
+  // console.log('http://localhost:' + port + '/login');
+// }

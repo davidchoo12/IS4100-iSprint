@@ -1,139 +1,137 @@
-<style>
-    @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
-      html {
-        height:100%;
-        background-image: linear-gradient(to right top, #F6F8FA 0%, #ffffff 100%);
-      }
+html {
+  height:100%;
+  background-image: linear-gradient(to right top, #F6F8FA 0%, #ffffff 100%);
+}
 
-      nav {
-        mask-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #ffffff 25%, #ffffff 75%, rgba(255, 255, 255, 0) 100%);
-        margin: 0 auto;
-      }
+nav {
+  mask-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #ffffff 25%, #ffffff 75%, rgba(255, 255, 255, 0) 100%);
+  margin: 0 auto;
+}
 
-      nav ul {
-        text-align: center;
-        background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 25%, rgba(255, 255, 255, 0.2) 75%, rgba(255, 255, 255, 0) 100%);
-        box-shadow: 0 0 25px 0px  rgba(0, 0, 0, 0.1), inset 0 0 1px 0 rgba(255, 255, 255, 0.6);
-
-
-      }
-
-      nav ul li {
-        display: inline-block;
-      }
-
-      nav ul li a {
-        padding: 8px;
-        padding-left: 30px;
-        padding-right: 30px;
-        font-family: "Open Sans";
-        text-transform:uppercase;
-        color: rgba(0, 35, 122, 0.5);
-        font-size: 14px;
-        text-decoration: none;
-        display: block;
-      }
-
-      nav ul li a:hover {
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.6);
-        background: rgba(255, 255, 255, 0.1);
-        color: rgba(0, 35, 122, 0.7);
-      }
+nav ul {
+  text-align: center;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 25%, rgba(255, 255, 255, 0.2) 75%, rgba(255, 255, 255, 0) 100%);
+  box-shadow: 0 0 25px 0px  rgba(0, 0, 0, 0.1), inset 0 0 1px 0 rgba(255, 255, 255, 0.6);
 
 
+}
 
-      .dropbtn{
-        color: #8495AF !important;
-      }
+nav ul li {
+  display: inline-block;
+}
 
-      /* The container <div> - needed to position the dropdown content */
-      .dropdown {
-        position: relative;
-        display: inline-block;
-      }
+nav ul li a {
+  padding: 8px;
+  padding-left: 30px;
+  padding-right: 30px;
+  font-family: "Open Sans";
+  text-transform:uppercase;
+  color: rgba(0, 35, 122, 0.5);
+  font-size: 14px;
+  text-decoration: none;
+  display: block;
+}
 
-      .submenu{
-          text-transform: capitalize;
-      }
-      /* Dropdown Content (Hidden by Default) */
-      .dropdown-content {
-        display: none;
-        position: absolute;
-        position: 0px;
-        background-color: #f1f1f1;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        z-index: 1;
+nav ul li a:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(0, 35, 122, 0.7);
+}
 
-      }
 
-      /* Links inside the dropdown */
-      .dropdown-content a {
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-      }
 
-      /* Change color of dropdown links on hover */
-      .dropdown-content a:hover {background-color: #ddd;}
+.dropbtn{
+  color: #8495AF !important;
+}
 
-      /* Show the dropdown menu on hover */
-      .dropdown:hover .dropdown-content {display: block; margin-left:-20px;}
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
 
-      /* Change the background color of the dropdown button when the dropdown content is shown */
-      .dropdown:hover .dropbtn {background-color: #8495AF; color:white !important;}
+.submenu{
+    text-transform: capitalize;
+}
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  position: 0px;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
 
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block; margin-left:-20px;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #8495AF; color:white !important;}
 
 
 
 
 
-      #menu{
-        background-color: white;
-        z-index: 10;
-      }
-      .logo{
-        display: block;
-        margin-left: auto;
-        margin-right: auto
-      }
-      .logoDiv{
-        padding: 25px 0;   
-      }
-      .sticky {
-        position: fixed;
-        top: 0;
-        width: 100%
-      }
-      .title_container{
-         display: flex; /* or inline-flex */
-         justify-content: space-between;
-         background-color: white;
-         padding: 10px;
-          font-weight: bold;
-      }
 
-      .new_sprint{
-        padding: 5px 10px;
-        border-radius: 5px;
-        border:1px;
-        border-color: #B6D5E1;
-        border-style: solid;
-      }
-      .new_sprint .glyphicon-plus{
-        padding: 0px 5px;
-      }
-      .task_title{
-        font-size:20px;
-      }
-      .add_task_button{
-        text-decoration: none;
-        width:100%;
-        text-align: center;
-      }
-      .chartDiv{
-        width: 60%;
-        margin: auto;
-      }
-    </style>
+#menu{
+  background-color: white;
+  z-index: 10;
+}
+.logo{
+  display: block;
+  margin-left: auto;
+  margin-right: auto
+}
+.logoDiv{
+  padding: 25px 0;   
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%
+}
+.title_container{
+  /* display: flex; or inline-flex */
+  justify-content: space-between;
+  background-color: white;
+  /* padding: 10px; */
+  font-weight: bold;
+}
+
+.new_sprint{
+  padding: 5px 10px;
+  border-radius: 5px;
+  border:1px;
+  border-color: #B6D5E1;
+  border-style: solid;
+}
+.new_sprint .glyphicon-plus{
+  padding: 0px 5px;
+}
+.task_title{
+  font-size:20px;
+}
+.add_task_button{
+  text-decoration: none;
+  width:100%;
+  text-align: center;
+}
+.chartDiv{
+  width: 60%;
+  margin: auto;
+}

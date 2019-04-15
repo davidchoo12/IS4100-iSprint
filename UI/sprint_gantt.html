@@ -74,16 +74,17 @@
       ${ d.projects.length ? '' : 'You have no projects' }
       ${ d.projects.map(e => 
         `
-          <div class="title_container proj_title">
-            <div>${e.name}</div>
-            <a href="/project/${e.id}/sprint/new">
-              <div class='new_sprint'> <span class="glyphicon glyphicon-plus"></span>New Sprint</div>
-            </a>
+          <div class="container">
+            <div class="title_container proj_title">
+              <h2>${e.name}</h2>
+              <a class="btn btn-outline-primary float-right" href="/project/${e.id}/sprint/new">New Sprint</a>
+            </div>
+            <div>Budget: ${e.budget}</div>
+            <div>Start Date: ${e.start_date}</div>
+            <div>End Date: ${e.end_date}</div>
+            ${ e.sprints ? '' : 'This project has no sprints/tasks' }
           </div>
-          <div>Budget: ${e.budget}</div>
-          <div>Start Date: ${e.start_date}</div>
-          <div>End Date: ${e.end_date}</div>
-          ${ e.sprints ? `<div style="position:relative" class="gantt" id="GanttChartDIV" projectId="${e.id}"></div>` : 'This project has no sprints/tasks' }
+          ${ e.sprints ? `<div style="position:relative" class="gantt" id="GanttChartDIV" projectId="${e.id}"></div>` : '' }
         `
       ).join('') }
     </div>
@@ -177,7 +178,7 @@
           'day'
         );
         g.setOptions(option);
-        console.log(gantt.getAttribute('projectId'));
+        // console.log(gantt.getAttribute('projectId'));
         // Load from a Json url
         JSGantt.parseJSON('/project/' + gantt.getAttribute('projectId') + '/sprint', g);
         g.Draw();
@@ -349,13 +350,11 @@
 
       // 2. Append
       var resource = document.querySelectorAll('.glineitem > .gresource');
-      console.log(resource);
       resource.forEach(r => {
         var parentElement = r.parentElement;
         var taskName = parentElement.querySelector(
           '.gtaskname > div'
         ).textContent.trim();
-        console.log(taskName);
         if (r.textContent.length == 1) {
           var button = document.createElement('button');
           button.innerHTML = 'Assign Task';
@@ -371,11 +370,13 @@
           var span = document.getElementsByClassName('close')[0];
           // When the user clicks on (x), close the modal
           span.onclick = function() {
+            modalBody.innerHTML = '';
             modal.style.display = 'none';
           };
           // When the user clicks anywhere outside of the modal, close it
           window.onclick = function(event) {
             if (event.target == modal) {
+              modalBody.innerHTML = '';
               modal.style.display = 'none';
             }
           };

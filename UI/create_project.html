@@ -59,13 +59,13 @@
                     <form method="POST">
                         <div class="input-group">
                             <label class="label">Project Name</label>
-                            <input class="input--style-4" type="text" name="project_name">
+                            <input class="input--style-4" type="text" name="project_name" required>
                         </div>
 
                         <div class="input-group">
                             <label class="label">Start/End Date of Project</label>
                             <div class="input-group-icon">
-                                <input class="input--style-4 js-datepicker2" type="text" name="project_date"> 
+                                <input class="input--style-4 js-datepicker2" type="text" name="project_date" required> 
                               <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i> 
                             </div>
                         </div>
@@ -76,7 +76,7 @@
                         </div>
                         <div class="input-group">
                             <label class="label">Project Budget</label>
-                            <input class="input--style-4" type="number" name="budget">
+                            <input class="input--style-4" type="number" name="budget" required>
                         </div>
                         <div class="p-t-15">
                             <button style="width:100%" class="btn btn--radius-2 btn--blue" type="submit">Create new Project</button>
